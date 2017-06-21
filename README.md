@@ -1,6 +1,8 @@
-This is a script helps you create <a href="github.com/therecipe/qt">qt</a>  project fastly
+This is a script helps you create <a href="github.com/therecipe/qt">qt</a>  project fastly<br>
 
-#Usage
+
+Usage
+====
 Create a new project "demo"
 ```shell
 $qnpj demo
@@ -10,4 +12,5 @@ Build & Run project "demo"
 $qfbr demo/
 ```
 
-#Installation
+Installation
+----
