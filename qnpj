@@ -1,0 +1,71 @@
+#! /bin/bash
+mkdir $1
+mkdir $1/qml
+echo '<?xml version="1.0" encoding="UTF-8"?>'>>$1/qml/$1.ui
+echo '<ui version="4.0">'>>$1/qml/$1.ui
+echo ' <class>'$1'</class>'>>$1/qml/$1.ui
+echo ' <widget class="QWidget" name="'$1'">'>>$1/qml/$1.ui
+echo '  <property name="geometry">'>>$1/qml/$1.ui
+echo '   <rect>'>>$1/qml/$1.ui
+echo '    <x>0</x>'>>$1/qml/$1.ui
+echo '    <y>0</y>'>>$1/qml/$1.ui
+echo '    <width>279</width>'>>$1/qml/$1.ui
+echo '    <height>201</height>'>>$1/qml/$1.ui
+echo '   </rect>'>>$1/qml/$1.ui
+echo '  </property>'>>$1/qml/$1.ui
+echo '  <property name="sizePolicy">'>>$1/qml/$1.ui
+echo '   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">'>>$1/qml/$1.ui
+echo '    <horstretch>0</horstretch>'>>$1/qml/$1.ui
+echo '    <verstretch>0</verstretch>'>>$1/qml/$1.ui
+echo '   </sizepolicy>'>>$1/qml/$1.ui
+echo '  </property>'>>$1/qml/$1.ui
+echo '  <property name="minimumSize">'>>$1/qml/$1.ui
+echo '   <size>'>>$1/qml/$1.ui
+echo '    <width>0</width>'>>$1/qml/$1.ui
+echo '    <height>0</height>'>>$1/qml/$1.ui
+echo '   </size>'>>$1/qml/$1.ui
+echo '  </property>'>>$1/qml/$1.ui
+echo '  <property name="windowTitle">'>>$1/qml/$1.ui
+echo '   <string>Calculator Builder</string>'>>$1/qml/$1.ui
+echo '  </property>'>>$1/qml/$1.ui
+echo '  <layout class="QVBoxLayout" name="verticalLayout">'>>$1/qml/$1.ui
+echo '   <item>'>>$1/qml/$1.ui
+echo '    <widget class="QLabel" name="label">'>>$1/qml/$1.ui
+echo '     <property name="text">'>>$1/qml/$1.ui
+echo '      <string>Hello Golang</string>'>>$1/qml/$1.ui
+echo '     </property>'>>$1/qml/$1.ui
+echo '    </widget>'>>$1/qml/$1.ui
+echo '   </item>'>>$1/qml/$1.ui
+echo '  </layout>'>>$1/qml/$1.ui
+echo ' </widget>'>>$1/qml/$1.ui
+echo ' <resources/>'>>$1/qml/$1.ui
+echo ' <connections/>'>>$1/qml/$1.ui
+echo '</ui>'>>$1/qml/$1.ui
+
+echo 'package main'>>$1/main.go
+echo 'import ('>>$1/main.go
+echo '	"github.com/therecipe/qt/core"'>>$1/main.go
+echo '	"github.com/therecipe/qt/uitools"'>>$1/main.go
+echo '	"github.com/therecipe/qt/widgets"'>>$1/main.go
+echo '	"os"'>>$1/main.go
+echo ')'>>$1/main.go
+echo 'func main() {'>>$1/main.go
+echo '	widgets.NewQApplication(len(os.Args), os.Args)'>>$1/main.go
+echo -e "	LoadUI(\":/qml/"$1".ui\").Show()">>$1/main.go
+echo '	widgets.QApplication_Exec()'>>$1/main.go
+echo '}'>>$1/main.go
+echo 'func LoadUI(str string) *widgets.QWidget {'>>$1/main.go
+echo '	var widget = widgets.NewQWidget(nil, 0)'>>$1/main.go
+echo '	var loader = uitools.NewQUiLoader(nil)'>>$1/main.go
+echo '	var file = core.NewQFile2(str)'>>$1/main.go
+echo '	file.Open(core.QIODevice__ReadOnly)'>>$1/main.go
+echo '	var formWidget = loader.Load(file, widget)'>>$1/main.go
+echo '	file.Close()'>>$1/main.go
+echo '	var layout = widgets.NewQVBoxLayout()'>>$1/main.go
+echo '	layout.AddWidget(formWidget, 0, 0)'>>$1/main.go
+echo '	widget.SetLayout(layout)'>>$1/main.go
+echo '	return widget'>>$1/main.go
+echo '}'>>$1/main.go
+
+~/Qt5.8.0/Tools/QtCreator/bin/qtcreator $1/qml/$1.ui &
+liteide $1/main.go &

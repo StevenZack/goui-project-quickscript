@@ -1,0 +1,3 @@
+#! /bin/bash
+qtdeploy build desktop $1
+qtdeploy run desktop $1
