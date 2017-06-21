@@ -14,3 +14,4 @@ $qfbr demo/
 
 Installation
 ----
+    chmod +x qnpj ;chmod +x qfbr ;sudo mv qnpj /usr/bin/;sudo mv qfbr /usr/bin/
